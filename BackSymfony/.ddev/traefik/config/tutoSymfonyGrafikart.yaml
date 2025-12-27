@@ -1,0 +1,131 @@
+#ddev-generated
+# If you remove the ddev-generated line above you
+# are responsible for maintaining this file. DDEV will not then
+# update it, for example if you add `additional_hostnames`, etc.
+
+http:
+  routers:
+    tutoSymfonyGrafikart-web-80-http:
+      entrypoints:
+        - http-80
+      rule: HostRegexp(`^tutosymfonygrafikart\.ddev\.site$`)
+      
+      service: "tutoSymfonyGrafikart-web-80"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "tutoSymfonyGrafikart-redirectHttps"
+    tutoSymfonyGrafikart-web-8025-http:
+      entrypoints:
+        - http-8025
+      rule: HostRegexp(`^tutosymfonygrafikart\.ddev\.site$`)
+      
+      service: "tutoSymfonyGrafikart-web-8025"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "tutoSymfonyGrafikart-redirectHttps"
+    tutoSymfonyGrafikart-xhgui-80-http:
+      entrypoints:
+        - http-8143
+      rule: HostRegexp(`^tutosymfonygrafikart\.ddev\.site$`)
+      
+      service: "tutoSymfonyGrafikart-xhgui-80"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "tutoSymfonyGrafikart-redirectHttps"
+    tutoSymfonyGrafikart-adminer-8080-http:
+      entrypoints:
+        - http-9100
+      rule: HostRegexp(`^tutosymfonygrafikart\.ddev\.site$`)
+      
+      service: "tutoSymfonyGrafikart-adminer-8080"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "tutoSymfonyGrafikart-redirectHttps"
+    
+    
+    
+    tutoSymfonyGrafikart-web-80-https:
+      entrypoints:
+        - http-443
+      rule: HostRegexp(`^tutosymfonygrafikart\.ddev\.site$`)
+      
+      service: "tutoSymfonyGrafikart-web-80"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    tutoSymfonyGrafikart-web-8025-https:
+      entrypoints:
+        - http-8026
+      rule: HostRegexp(`^tutosymfonygrafikart\.ddev\.site$`)
+      
+      service: "tutoSymfonyGrafikart-web-8025"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
+    tutoSymfonyGrafikart-xhgui-80-https:
+      entrypoints:
+        - http-8142
+      rule: HostRegexp(`^tutosymfonygrafikart\.ddev\.site$`)
+      
+      service: "tutoSymfonyGrafikart-xhgui-80"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
+    tutoSymfonyGrafikart-adminer-8080-https:
+      entrypoints:
+        - http-9101
+      rule: HostRegexp(`^tutosymfonygrafikart\.ddev\.site$`)
+      
+      service: "tutoSymfonyGrafikart-adminer-8080"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
+
+  middlewares:
+    tutoSymfonyGrafikart-redirectHttps:
+      redirectScheme:
+        scheme: https
+        permanent: true
+
+  services:
+    tutoSymfonyGrafikart-web-80:
+      loadbalancer:
+        servers:
+          - url: http://ddev-tutoSymfonyGrafikart-web:80
+        
+    tutoSymfonyGrafikart-web-8025:
+      loadbalancer:
+        servers:
+          - url: http://ddev-tutoSymfonyGrafikart-web:8025
+        
+    
+    
+    tutoSymfonyGrafikart-xhgui-80:
+      loadbalancer:
+        servers:
+          - url: http://ddev-tutoSymfonyGrafikart-xhgui:80
+        
+    
+    tutoSymfonyGrafikart-adminer-8080:
+      loadbalancer:
+        servers:
+          - url: http://ddev-tutoSymfonyGrafikart-adminer:8080
+        
+    
+    
+
+tls:
+  certificates:
+    - certFile: /mnt/ddev-global-cache/traefik/certs/tutoSymfonyGrafikart.crt
+      keyFile: /mnt/ddev-global-cache/traefik/certs/tutoSymfonyGrafikart.key

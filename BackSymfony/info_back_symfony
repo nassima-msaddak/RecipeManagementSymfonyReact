@@ -1,0 +1,149 @@
+https://grafikart.fr/tutoriels/decouverte-symfony-7-2179#autoplay
+
+
+
+
+user@TCL40:~/Bureau/symfony/tutoSymfonyGrafikart$ php --version
+
+user@TCL40:~/Bureau/symfony/tutoSymfonyGrafikart$ composer --version
+
+composer create-project symfony/skeleton:"7.3.x" tutoSymfonyGrafikart
+
+
+******************  toujours dans "ddev"  **********************************************************************************************************************************
+php bin/console make:controller HomeController  //créer controlleur  ==> c'est içi où il y a les routes (une route par fonction si on souhaite )
+php bin/console debug:router  // permet de voir toutes les routes
+
+
+php bin/console make:entity   //créer entité (table)  dans la base de donnée
+composer require api   // très importer pour utiliser le concept d'API platform
+// exemple dans l'entité , à ajouter manuellement:
+
+ use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+
+    #[ApiResource(
+        normalizationContext: ['groups' => ['recip:read']]
+    )]
+
+    #[Groups(['recip:read'])]
+    private ?string $title = null;
+
+
+php bin/console make:entity recip    // recip = nom de l'entité ==> de cette manière, on peut rajoutter d'autre champ
+
+php bin/console make:migration   // mettre à jours la base de donnée selon la nouvelle table ajouté
+php bin/console doctrine:migrations:migrate // ou bien ça tous simplement
+
+Après avoir créé des entités, tu peux mettre à jour la base de données :
+php bin/console doctrine:schema:update --force
+
+
+
+ composer require webapp   //pour squelette des applications web
+
+ php bin/console  // liste des commandes possible de symfony
+
+ php -S localhost:8080 -t public    // run projet symfony (dossier "public" est root par défaut )
+
+
+// *********************** pour consulter la base de donnée : ********************************************************
+https://www.adminer.org/en/#download   ==> download adminer5.4.1forMySQL.php English ==> la mettre sous dossier public et renommer adminer.php  ===> http://localhost:8080/adminer.php   Accès à la base de donnée
+
+
+
+sudo lsof -i :8080   //pour savoir le process qui occupe le port 8080
+sudo kill -9 12345
+
+
+//********** ddev config pour créer un dossier ddev et configurer le projet et faire par la suite " ddev start" **************
+
+user@TCL40:~/Bureau/symfony/tutoSymfonyGrafikart$ ddev config
+Creating a new DDEV project config in the current directory (/home/user/Bureau/symfony/tutoSymfonyGrafikart)
+Once completed, your configuration will be written to /home/user/Bureau/symfony/tutoSymfonyGrafikart/.ddev/config.yaml
+
+Project name (tutoSymfonyGrafikart): tutoSymfonyGrafikart
+
+The docroot is the directory from which your site is served.
+This is a relative path from your project root at /home/user/Bureau/symfony/tutoSymfonyGrafikart
+You may leave this value blank if your site files are in the project root
+Docroot Location (public):
+Found a php codebase at /home/user/Bureau/symfony/tutoSymfonyGrafikart/public.
+Project Type [backdrop, cakephp, craftcms, django4, drupal, drupal6, drupal7, laravel, magento, magento2, php, python, shopware6, silverstripe, typo3, wordpress] (php):
+Configuration complete. You may now run 'ddev start'.
+user@TCL40:~/Bureau/symfony/tutoSymfonyGrafikart$ ddev start
+
+
+// ******************  connaitre les valeurs de connexion de mysql dans mon projet **************
+ddev ssh
+mysql -u db -pdb db
+
+// ******************************************
+
+
+
+************************************   pour installer une dernière et propre version de ddev :  ************
+ ddev version
+sudo apt remove ddev
+curl -fsSL https://ddev.com/install.sh | bash
+exec $SHELL
+ddev version   ====> devrait etre 1.24.*
+
+
+// puis ,
+ddev stop
+ddev start
+
+//**************************  Étape 5 — Installer Adminer  **************************************************
+ddev get ddev/ddev-adminer
+ddev restart
+
+===> comme doctrine utiise PDO et non pas mysqli , il faut corriger suite à l'obtention de cette erreur : An exception occurred in the driver: could not find driver
+// ******************************************
+
+ sudo apt remove ddev
+curl -fsSL https://ddev.com/install.sh | bash
+exec $SHELL
+
+ddev version
+
+ddev config --php-version=8.3
+
+ddev restart
+
+ou
+
+ddev stop
+ddev start
+
+
+
+ddev ssh
+php-fpm -m | grep -i pdo_mysql
+
+// ********************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

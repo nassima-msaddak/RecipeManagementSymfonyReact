@@ -1,0 +1,45 @@
+🎯 Objectif
+
+Autoriser Angular (http://localhost:4200
+) à appeler ton backend Symfony 7 (API)
+
+✅ Méthode recommandée en Symfony 7 : NelmioCorsBundle
+
+C’est l’équivalent direct de AddCors + UseCors en .NET.
+
+1-----   Installer Nelmio CORS
+composer require nelmio/cors-bundle
+
+Symfony va l’activer automatiquement.
+
+
+2 ---    Configuration CORS (équivalent exact de ton code .NET)
+
+📁 config/packages/nelmio_cors.yaml
+
+
+nelmio_cors:
+    defaults:
+        allow_credentials: false
+        allow_origin: []
+        allow_headers: []
+        allow_methods: []
+        max_age: 3600
+
+    paths:
+        '^/api/':
+            allow_origin:
+                - 'http://localhost:4200'
+            allow_headers:
+                - 'Content-Type'
+                - 'Authorization'
+            allow_methods:
+                - GET
+                - POST
+                - PUT
+                - PATCH
+                - DELETE
+                - OPTIONS
+
+
+

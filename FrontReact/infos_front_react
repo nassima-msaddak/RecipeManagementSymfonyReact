@@ -1,0 +1,19 @@
+   
+   - Ajouter react js
+   https://www.w3schools.com/react/react_getstarted.asp
+
+    -    node -v  ==> Node doit etre installé
+    - npm install -g create-vite
+    -  npm create vite@latest my-react-app -- --template react
+
+         cd my-react-app
+         npm install
+         npm run dev
+
+
+Pour mettre à dernière version de react 
+npm i react@latest react-dom@latest
+
+
+In this tutorial, we'll use the popular styled-components library:  https://www.w3schools.com/react/react_css_js.asp
+npm install styled-components  ==> Now you can start writing CSS directly in your .jsx files:  ===>   import styled from 'styled-components';
