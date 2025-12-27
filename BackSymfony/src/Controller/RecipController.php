@@ -40,7 +40,7 @@ final class RecipController extends AbstractController
 //        ]);
 //    }
 
-//nassima :  https://tutosymfonygrafikart.ddev.site/recette/pate-boulognaise-58
+//nassima : https://backsymfony.ddev.site/recette/pate-boulognaise-58
     #[Route('/recette/{slug}-{id}', name: 'recip.show', requirements: ['id' => '\d+' , 'slug' => '[a-z0-9-]+'])]
     public function show(Request $request, string $slug , int $id): Response
     {

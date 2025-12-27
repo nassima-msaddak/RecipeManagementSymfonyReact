@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class HomeController extends AbstractController  // nassima : ajouter "extends AbstractController"  pour  nous fournir de méthodes supplémentaires
 {
-    // nassima : https://tutosymfonygrafikart.ddev.site/home
+    // nassima : https://backsymfony.ddev.site/api/home
     #[Route('/api/home', name: 'app_home_page')]
     public function index(Request $request): Response
     {
